@@ -9,16 +9,12 @@ async function listContacts() {
   return JSON.parse(list);
   // Повертає масив контактів.
 }
-listContacts();
-
 async function getContactById(contactId) {
   const contacts = await listContacts();
   const findContactById = contacts.find((contact) => contact.id === contactId);
   return findContactById || null;
   //Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
 }
-getContactById();
-
 async function removeContact(contactId) {
   const contacts = await listContacts();
   const indexContact = contacts.findIndex(
