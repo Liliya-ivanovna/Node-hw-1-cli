@@ -7,14 +7,12 @@ const contactsPath = path.join(__dirname, "./db/contacts.json");
 async function listContacts() {
   const list = await fs.readFile(contactsPath);
   return JSON.parse(list);
-  // Повертає масив контактів.
 }
 async function getContactById(contactId) {
   const contacts = await listContacts();
   const findContactById = contacts.find((contact) => contact.id === contactId);
   return findContactById || null;
-  //Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
-}
+  }
 async function removeContact(contactId) {
   const contacts = await listContacts();
   const indexContact = contacts.findIndex(
@@ -28,8 +26,7 @@ async function removeContact(contactId) {
   const removedContact = contacts.splice(indexContact, 1);
   fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return removedContact;
-  // Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
-}
+ }
 
 async function addContact(name, email, phone) {
   const contacts = await listContacts();
@@ -42,7 +39,6 @@ async function addContact(name, email, phone) {
   contacts.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return newContact;
-  //Повертає об'єкт доданого контакту.
 }
 
 module.exports = { listContacts, getContactById, removeContact, addContact };
